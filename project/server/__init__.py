@@ -15,7 +15,7 @@ if os.environ.get('FLASK_COVERAGE'):
     COV.start()
 
 import click
-from flask import Flask
+from flask import Flask, make_response, jsonify
 from flask_bcrypt import Bcrypt
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
@@ -37,6 +37,19 @@ migrate = Migrate(app, db)
 @app.route("/")
 def root_site():
     return "<p>It works!</p>"
+
+@app.route("/users/index")
+def user_list():
+    users = []
+    for user in User.query.all():
+        users.append({
+            "admin": user.admin,
+            "email": user.email,
+            "id": user.id,
+            "registered_on": user.registered_on
+        })
+    responseObject = {"users": users}
+    return make_response(jsonify(responseObject)), 201
 
 from project.server.auth.views import auth_blueprint
 app.register_blueprint(auth_blueprint)
