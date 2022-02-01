@@ -34,22 +34,22 @@ db = SQLAlchemy(app)
 from project.server.models import User
 # migrate = Migrate(app, db)
 
-# @app.route("/")
-# def root_site():
-#     return "<p>It works!</p>"
+@app.route("/")
+def root_site():
+    return "<p>It works!</p>"
 
-# @app.route("/users/index")
-# def user_list():
-#     users = []
-#     for user in User.query.all():
-#         users.append({
-#             "admin": user.admin,
-#             "email": user.email,
-#             "id": user.id,
-#             "registered_on": user.registered_on
-#         })
-#     responseObject = {"users": users}
-#     return make_response(jsonify(responseObject)), 201
+@app.route("/users/index")
+def user_list():
+    users = []
+    for user in User.query.all():
+        users.append({
+            "admin": user.admin,
+            "email": user.email,
+            "id": user.id,
+            "registered_on": user.registered_on
+        })
+    responseObject = {"users": users}
+    return make_response(jsonify(responseObject)), 201
 
 # from project.server.auth.views import auth_blueprint
 # app.register_blueprint(auth_blueprint)
