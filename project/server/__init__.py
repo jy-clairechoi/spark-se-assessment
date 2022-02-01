@@ -15,7 +15,7 @@ import os
 #     COV.start()
 
 # import click
-from flask import Flask#, make_response, jsonify
+from flask import Flask, make_response, jsonify
 from flask_bcrypt import Bcrypt
 from flask_sqlalchemy import SQLAlchemy
 # from flask_migrate import Migrate
