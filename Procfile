@@ -1,4 +1,4 @@
-web: gunicorn wsgi:app
+web: gunicorn app:app
 heroku ps:scale web=1
-release: flask db upgrade
+release: python app.py db upgrade
 
